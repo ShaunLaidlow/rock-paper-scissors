@@ -3,16 +3,13 @@ function getComputerChoice() {
     let choice = Math.random();
 
     if(choice < 0.33){
-        choice = 0
-        //0 means rock
+        choice = "rock";
     }
     else if(choice < 0.66){
-        choice = 1
-        //1 means paper
+        choice = "paper";
     }
     else {
-        choice = 2
-        //2 means scissors
+        choice = "scissors";
     }
     return choice;
 
@@ -20,21 +17,48 @@ function getComputerChoice() {
 
 function getUserChoice() {
     let choice = prompt("What are you throwing?").toLowerCase();
-    if(choice == "rock"){
-        choice = 0;
-    }
-    if(choice == "paper"){
-        choice = 1;
-    }
-    if(choice == "scissors"){
-        choice = 2;
-    }
+    console.log(choice)
     return choice;
 }
+
+function selectWinner(user,comp){
+    let statement;
+    if(user == comp){
+        statement = "It's a Draw"
+    }
+    if(user == "rock"){
+        if (comp == "paper"){
+            statement = "You Lose! Paper beats Rock";
+        }
+        if (comp == "scissors"){
+            statement = "You Win! Rock beats Scissors";
+        }
+    }
+    if(user == "paper"){
+        if(comp== "scissors"){
+            statement = "You Lose! Scissors beats Paper";
+        }
+        if(comp == "rock"){
+            statement = "You Win! Paper beats Rock";
+        }
+    }
+    if(user == "scissors"){
+        if(comp== "rock"){
+            statement = "You Lose! Rock beats Scissors";
+        }
+        if(comp == "paper"){
+            statement = "You Win! Scissors beats Paper";
+        }
+    }
+
+    return statement;
+}
+
 
 
 
 
 let user_choice = getUserChoice();
 let computer_choice = getComputerChoice();
-console.log(computer_choice);
+let decision = selectWinner(user_choice,computer_choice)
+console.log(decision);
