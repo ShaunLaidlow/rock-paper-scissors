@@ -11,17 +11,21 @@ function getComputerChoice() {
     else {
         choice = "scissors";
     }
+
     return choice;
 
 }
 
 function getUserChoice() {
-    let choice = prompt("What are you throwing?").toLowerCase();
-    console.log(choice)
+    let choice;
+    while(choice != "rock" && choice != "paper" && choice != "scissors"){
+        choice = prompt("What are you throwing?").toLowerCase();
+    }
     return choice;
 }
 
 function selectWinner(user,comp){
+    console.log("users: "+ user + " computers: " + comp)
     let statement;
     if(user == comp){
         statement = "It's a Draw"
@@ -55,10 +59,11 @@ function selectWinner(user,comp){
 }
 
 
+function playRound(){
+    let user_choice = getUserChoice();
+    let computer_choice = getComputerChoice();
+    let decision = selectWinner(user_choice,computer_choice)
+    return decision
+}
 
-
-
-let user_choice = getUserChoice();
-let computer_choice = getComputerChoice();
-let decision = selectWinner(user_choice,computer_choice)
-console.log(decision);
+console.log(playRound());
